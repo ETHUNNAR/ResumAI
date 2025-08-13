@@ -50,3 +50,5 @@ const testSizes = [
 // 2684354560 bytes = 2.5 GB
 // 1099511627776 bytes = 1 TB
 */
+
+export const generateUUID = () => crypto.randomUUID();
