@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import * as React from 'react'
 import {Link, useNavigate, useParams} from "react-router";
 import {usePuterStore} from "~/lib/puter";
 import ATS from "~/components/ATS";
@@ -13,16 +13,16 @@ export const meta = () => ([
 const Resume = () => {
     const {auth, isLoading, fs, kv} = usePuterStore();
     const {id} = useParams();
-    const [imageUrl, setImageUrl] = useState('')
-    const [resumeUrl, setResumeUrl] = useState('')
-    const [feedback, setFeedback] = useState<Feedback | null>(null)
+    const [imageUrl, setImageUrl] = React.useState('')
+    const [resumeUrl, setResumeUrl] = React.useState('')
+    const [feedback, setFeedback] = React.useState<Feedback | null>(null)
     const navigate = useNavigate();
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (!isLoading && !auth.isAuthenticated) navigate(`/auth?next=/resume/${id}`);
     }, [isLoading]);
 
-    useEffect(() => {
+    React.useEffect(() => {
         const loadResume = async () =>{
             const resume = await kv.get(`resume:${id}`);
 
@@ -79,7 +79,7 @@ const Resume = () => {
                     {feedback ? (
                         <div className=" flex flex-col gap-8 animate-in fade-in duration-1000">
                             <Summary feedback={feedback}/>
-                            <ATS score={feedback.ATS.score || 0} suggestions={feedback.ATS.tip || []} />
+                            <ATS score={feedback.ATS.score || 0} suggestions={feedback.ATS.tips || []} />
                             <Details feedback={feedback}/>
                         </div>
                     ) : (

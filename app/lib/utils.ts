@@ -1,9 +1,16 @@
+import clsx, {type ClassValue} from "clsx";
+import {twMerge} from "tailwind-merge";
+
 /**
  * Formats a file size in bytes to a human-readable string (KB, MB, GB, TB)
  * @param bytes - The size in bytes to format
  * @param decimals - Number of decimal places to include (default: 2)
  * @returns A formatted string with the appropriate size unit
  */
+export function cn(...inputs: ClassValue[]){
+    return twMerge(clsx(inputs))
+}
+
 export function formatSize(bytes: number, decimals: number = 2): string {
   if (bytes === 0) return '0 Bytes';
   

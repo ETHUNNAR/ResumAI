@@ -4,7 +4,7 @@ import {resumes} from "../../constants";
 import ResumeCard from "~/components/ResumeCard";
 import {usePuterStore} from "~/lib/puter";
 import {useLocation, useNavigate} from "react-router";
-import {useEffect} from "react";
+import * as React from "react";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -20,7 +20,7 @@ export default function Home() {
   const {auth} = usePuterStore();
   const navigate = useNavigate();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!auth.isAuthenticated) navigate('/auth?next=/');
   }, [auth.isAuthenticated]);
 

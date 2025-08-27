@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import * as React from 'react'
 import {usePuterStore} from "~/lib/puter";
 import {useLocation, useNavigate} from "react-router";
 export const meta = () => ([
@@ -12,7 +12,7 @@ const Auth = () => {
     const next = location.search.split('next=')[1];
     const navigate = useNavigate();
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (auth.isAuthenticated) navigate(next);
     }, [auth.isAuthenticated, next]);
 
